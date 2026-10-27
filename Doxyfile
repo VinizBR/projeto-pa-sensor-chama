@@ -1,8 +1,8 @@
 # ---- Projeto ----
-PROJECT_NAME = "Leitor GPS"
+PROJECT_NAME = "CHAMA"
 OUTPUT_DIRECTORY = docs
 # ---- Entrada ----
-INPUT = include src
+INPUT = .
 RECURSIVE = YES
 EXTRACT_ALL = YES
 EXTRACT_PRIVATE = YES

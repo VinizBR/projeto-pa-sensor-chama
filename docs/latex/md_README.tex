@@ -1,0 +1,15 @@
+\chapter{Projeto de Programação Aplicada }
+\hypertarget{md_README}{}\label{md_README}\index{Projeto de Programação Aplicada@{Projeto de Programação Aplicada}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Sensor de Chama STM32\+MP1}{Sensor de Chama STM32\+MP1}}\label{md_README_autotoc_md1}
+\hypertarget{md_README_autotoc_md2}{}\doxysubsection{\texorpdfstring{Objetivo}{Objetivo}}\label{md_README_autotoc_md2}
+Desenvolver uma classe C++ para leitura de um sensor de chama utilizando o ambiente Linux embarcado da placa STM32\+MP1 DK1.\hypertarget{md_README_autotoc_md3}{}\doxysubsection{\texorpdfstring{Arquivos}{Arquivos}}\label{md_README_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{SensorChama_8h}{Sensor\+Chama.\+h}}\+: declaração da classe e documentação Doxygen.
+\item {\ttfamily \doxylink{SensorChama_8cpp}{Sensor\+Chama.\+cpp}}\+: implementação dos métodos de leitura.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{Documentação}{Documentação}}\label{md_README_autotoc_md4}
+Os comentários Doxygen descrevem a finalidade da classe, seus métodos, parâmetros e valores de retorno.\hypertarget{md_README_autotoc_md5}{}\doxysubsection{\texorpdfstring{Estado atual}{Estado atual}}\label{md_README_autotoc_md5}
+A implementação inicial realiza a leitura de um valor bruto de um arquivo do subsistema IIO do Linux. A correspondência entre o canal utilizado e a saída do sensor ainda precisa ser validada experimentalmente.\hypertarget{md_README_autotoc_md6}{}\doxysubsection{\texorpdfstring{Compilação}{Compilação}}\label{md_README_autotoc_md6}
+A aplicação deverá ser compilada para a arquitetura ARM utilizando a toolchain fornecida para o projeto. 

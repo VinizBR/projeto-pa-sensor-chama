@@ -1,0 +1,29 @@
+\doxysection{Sensor\+Chama.\+cpp}
+\hypertarget{SensorChama_8cpp_source}{}\label{SensorChama_8cpp_source}\mbox{\hyperlink{SensorChama_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SensorChama_8h}{SensorChama.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00009}\mbox{\hyperlink{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}{00009}}\ \mbox{\hyperlink{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}{SensorChama::SensorChama}}(\textcolor{keyword}{const}\ std::string\&\ caminho)}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00010}00010\ \ \ \ \ :\ \mbox{\hyperlink{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}{caminhoLeitura}}(caminho)\ \{}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00018}\mbox{\hyperlink{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}{00018}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}{SensorChama::lerValorBruto}}(\textcolor{keywordtype}{int}\&\ valor)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00019}00019\ \ \ \ \ std::ifstream\ arquivo(\mbox{\hyperlink{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}{caminhoLeitura}});}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!arquivo.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{int}\ leitura;}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(arquivo\ >>\ leitura))\ \{}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00031}00031\ \ \ \ \ valor\ =\ leitura;}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8cpp_source_l00033}00033\ \}}
+
+\end{DoxyCode}

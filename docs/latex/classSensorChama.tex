@@ -1,0 +1,122 @@
+\doxysection{Sensor\+Chama Class Reference}
+\hypertarget{classSensorChama}{}\label{classSensorChama}\index{SensorChama@{SensorChama}}
+
+
+Le o valor bruto de uma entrada do subsistema IIO do Linux.  
+
+
+
+
+{\ttfamily \#include $<$Sensor\+Chama.\+h$>$}
+
+
+
+Collaboration diagram for Sensor\+Chama\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}{Sensor\+Chama}} (const std\+::string \&caminho="{}/sys/bus/iio/devices/iio\+:device1/in\+\_\+voltage2\+\_\+raw"{})
+\begin{DoxyCompactList}\small\item\em Constroi o leitor do sensor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}{ler\+Valor\+Bruto}} (int \&valor) const
+\begin{DoxyCompactList}\small\item\em Le o valor bruto disponibilizado pelo Linux. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}{caminho\+Leitura}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Le o valor bruto de uma entrada do subsistema IIO do Linux. 
+
+O valor lido e uma amostra bruta do ADC. A interpretacao como deteccao de chama exige validacao do canal utilizado e do comportamento do sensor. 
+
+Definition at line \mbox{\hyperlink{SensorChama_8h_source_l00020}{20}} of file \mbox{\hyperlink{SensorChama_8h_source}{Sensor\+Chama.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classSensorChama_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}\index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
+\index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{SensorChama()}{SensorChama()}}
+{\footnotesize\ttfamily \label{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c} 
+Sensor\+Chama\+::\+Sensor\+Chama (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{caminho}{ = {\ttfamily "{}/sys/bus/iio/devices/iio\+:device1/in\+\_\+voltage2\+\_\+raw"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constroi o leitor do sensor. 
+
+Inicializa o caminho do arquivo de leitura.
+
+
+\begin{DoxyParams}{Parameters}
+{\em caminho} & Caminho do arquivo IIO que sera lido.\\
+\hline
+{\em caminho} & Caminho do arquivo IIO. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classSensorChama_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}\index{SensorChama@{SensorChama}!lerValorBruto@{lerValorBruto}}
+\index{lerValorBruto@{lerValorBruto}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{lerValorBruto()}{lerValorBruto()}}
+{\footnotesize\ttfamily \label{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9} 
+bool Sensor\+Chama\+::ler\+Valor\+Bruto (\begin{DoxyParamCaption}\item[{int \&}]{valor}{}\end{DoxyParamCaption}) const}
+
+
+
+Le o valor bruto disponibilizado pelo Linux. 
+
+Le o valor bruto do canal configurado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & Variavel que recebera o valor lido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a leitura funcionar; false em caso de erro.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & Referencia onde o resultado sera armazenado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se o arquivo puder ser lido corretamente. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classSensorChama_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}\index{SensorChama@{SensorChama}!caminhoLeitura@{caminhoLeitura}}
+\index{caminhoLeitura@{caminhoLeitura}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{caminhoLeitura}{caminhoLeitura}}
+{\footnotesize\ttfamily \label{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522} 
+std\+::string Sensor\+Chama\+::caminho\+Leitura\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{SensorChama_8h_source_l00022}{22}} of file \mbox{\hyperlink{SensorChama_8h_source}{Sensor\+Chama.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SensorChama_8h}{Sensor\+Chama.\+h}}\item 
+\mbox{\hyperlink{SensorChama_8cpp}{Sensor\+Chama.\+cpp}}\end{DoxyCompactItemize}
