@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['estado_20atual_0',['Estado atual',['../md_README.html#autotoc_md5',1,'']]]
+  ['4_20funcionamento_0',['4. Funcionamento',['../md_README.html#autotoc_md5',1,'']]]
 ];

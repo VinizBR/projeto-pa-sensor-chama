@@ -26,12 +26,19 @@ var NAVTREE =
 [
   [ "CHAMA", "index.html", [
     [ "Projeto de Programação Aplicada", "md_README.html", [
-      [ "Sensor de Chama STM32MP1", "md_README.html#autotoc_md1", [
-        [ "Objetivo", "md_README.html#autotoc_md2", null ],
-        [ "Arquivos", "md_README.html#autotoc_md3", null ],
-        [ "Documentação", "md_README.html#autotoc_md4", null ],
-        [ "Estado atual", "md_README.html#autotoc_md5", null ],
-        [ "Compilação", "md_README.html#autotoc_md6", null ]
+      [ "Sistema de Detecção de Chama — STM32MP1", "md_README.html#autotoc_md1", [
+        [ "1. Objetivo", "md_README.html#autotoc_md2", null ],
+        [ "2. Hardware utilizado", "md_README.html#autotoc_md3", null ],
+        [ "3. Conexões", "md_README.html#autotoc_md4", null ],
+        [ "4. Funcionamento", "md_README.html#autotoc_md5", null ],
+        [ "5. Estrutura do projeto", "md_README.html#autotoc_md6", null ],
+        [ "6. Compilação cruzada", "md_README.html#autotoc_md7", null ],
+        [ "7. Transferência para a STM32MP1", "md_README.html#autotoc_md8", null ],
+        [ "8. Execução", "md_README.html#autotoc_md9", null ],
+        [ "9. Implementação", "md_README.html#autotoc_md10", null ],
+        [ "10. Documentação Doxygen", "md_README.html#autotoc_md11", null ],
+        [ "11. Testes realizados", "md_README.html#autotoc_md12", null ],
+        [ "12. Limitações", "md_README.html#autotoc_md13", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [

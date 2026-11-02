@@ -2,14 +2,148 @@
 \hypertarget{md_README}{}\label{md_README}\index{Projeto de Programação Aplicada@{Projeto de Programação Aplicada}}
 \label{md_README_autotoc_md0}%
 \Hypertarget{md_README_autotoc_md0}%
-\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Sensor de Chama STM32\+MP1}{Sensor de Chama STM32\+MP1}}\label{md_README_autotoc_md1}
-\hypertarget{md_README_autotoc_md2}{}\doxysubsection{\texorpdfstring{Objetivo}{Objetivo}}\label{md_README_autotoc_md2}
-Desenvolver uma classe C++ para leitura de um sensor de chama utilizando o ambiente Linux embarcado da placa STM32\+MP1 DK1.\hypertarget{md_README_autotoc_md3}{}\doxysubsection{\texorpdfstring{Arquivos}{Arquivos}}\label{md_README_autotoc_md3}
+\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Sistema de Detecção de Chama — STM32\+MP1}{Sistema de Detecção de Chama — STM32\+MP1}}\label{md_README_autotoc_md1}
+\hypertarget{md_README_autotoc_md2}{}\doxysubsection{\texorpdfstring{1. Objetivo}{1. Objetivo}}\label{md_README_autotoc_md2}
+Desenvolver uma aplicação em C++ para monitoramento de um sensor de chama utilizando Linux embarcado na placa STM32\+MP157\+C-\/\+DK2.
+
+O programa realiza a leitura digital do sensor através de um GPIO e identifica mudanças no estado de detecção de chama.\hypertarget{md_README_autotoc_md3}{}\doxysubsection{\texorpdfstring{2. Hardware utilizado}{2. Hardware utilizado}}\label{md_README_autotoc_md3}
 
 \begin{DoxyItemize}
-\item {\ttfamily \doxylink{SensorChama_8h}{Sensor\+Chama.\+h}}\+: declaração da classe e documentação Doxygen.
-\item {\ttfamily \doxylink{SensorChama_8cpp}{Sensor\+Chama.\+cpp}}\+: implementação dos métodos de leitura.
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{Documentação}{Documentação}}\label{md_README_autotoc_md4}
-Os comentários Doxygen descrevem a finalidade da classe, seus métodos, parâmetros e valores de retorno.\hypertarget{md_README_autotoc_md5}{}\doxysubsection{\texorpdfstring{Estado atual}{Estado atual}}\label{md_README_autotoc_md5}
-A implementação inicial realiza a leitura de um valor bruto de um arquivo do subsistema IIO do Linux. A correspondência entre o canal utilizado e a saída do sensor ainda precisa ser validada experimentalmente.\hypertarget{md_README_autotoc_md6}{}\doxysubsection{\texorpdfstring{Compilação}{Compilação}}\label{md_README_autotoc_md6}
-A aplicação deverá ser compilada para a arquitetura ARM utilizando a toolchain fornecida para o projeto. 
+\item Placa STM32\+MP157\+C-\/\+DK2
+\item Sensor de chama com saída digital (DO)
+\item Cabos de conexão
+\item Computador com Ubuntu para compilação cruzada
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{3. Conexões}{3. Conexões}}\label{md_README_autotoc_md4}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Sensor  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}STM32\+MP1  \\
+VCC  &3,3 V  \\
+GND  &GND  \\
+DO  &D2 (PE1)  \\
+\end{DoxyTable}
+
+
+O pino D2 corresponde ao GPIO PE1 da STM32\+MP1.
+
+Na configuração Linux utilizada\+:
+
+
+\begin{DoxyItemize}
+\item Controlador\+: {\ttfamily /dev/gpiochip4}
+\item Linha GPIO\+: {\ttfamily 1}
+\item Direção\+: entrada digital
+\end{DoxyItemize}
+
+A numeração dos dispositivos GPIO pode variar conforme a configuração do sistema operacional.\hypertarget{md_README_autotoc_md5}{}\doxysubsection{\texorpdfstring{4. Funcionamento}{4. Funcionamento}}\label{md_README_autotoc_md5}
+O sensor apresenta uma saída digital com dois estados\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily 0}\+: chama detectada
+\item {\ttfamily 1}\+: nenhuma chama detectada
+\end{DoxyItemize}
+
+Esses estados foram confirmados experimentalmente.
+
+A aplicação monitora continuamente o sensor, realizando leituras a cada 200 milissegundos.
+
+As mensagens são exibidas somente quando ocorre uma mudança no estado de detecção.
+
+Exemplo de execução\+: \begin{DoxyVerb}Monitoramento iniciado.
+[INFO] Nenhuma chama detectada.
+[ALERTA] CHAMA DETECTADA!
+[INFO] Nenhuma chama detectada.
+\end{DoxyVerb}
+\hypertarget{md_README_autotoc_md6}{}\doxysubsection{\texorpdfstring{5. Estrutura do projeto}{5. Estrutura do projeto}}\label{md_README_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{SensorChama_8h}{Sensor\+Chama.\+h}}\+: declaração e documentação da classe.
+\item {\ttfamily \doxylink{SensorChama_8cpp}{Sensor\+Chama.\+cpp}}\+: implementação da leitura GPIO.
+\item {\ttfamily \doxylink{main_8cpp}{main.\+cpp}}\+: aplicação de monitoramento contínuo.
+\item {\ttfamily Doxyfile}\+: configuração da documentação Doxygen.
+\item {\ttfamily docs/}\+: arquivos de documentação do projeto.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md7}{}\doxysubsection{\texorpdfstring{6. Compilação cruzada}{6. Compilação cruzada}}\label{md_README_autotoc_md7}
+O programa é desenvolvido no Ubuntu e compilado para a arquitetura ARM Cortex-\/\+A7 da STM32\+MP1.
+
+É necessário possuir um SDK compatível com a placa.
+
+Ativar o SDK utilizado no desenvolvimento\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{source\ \string~/stm32mp1-\/sdk/environment-\/setup-\/cortexa7t2hf-\/neon-\/vfpv4-\/ostl-\/linux-\/gnueabi}
+
+\end{DoxyCode}
+
+
+Compilar\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$CXX\ -\/std=c++17\ -\/O2\ -\/Wall\ -\/Wextra\ -\/pthread\ main.cpp\ SensorChama.cpp\ -\/o\ sensor\_chama}
+
+\end{DoxyCode}
+
+
+O executável gerado é destinado à arquitetura ARM.\hypertarget{md_README_autotoc_md8}{}\doxysubsection{\texorpdfstring{7. Transferência para a STM32\+MP1}{7. Transferência para a STM32\+MP1}}\label{md_README_autotoc_md8}
+Com a placa conectada à rede e o SSH habilitado\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{scp\ -\/O\ sensor\_chama\ root@192.168.42.2:/root/}
+
+\end{DoxyCode}
+
+
+O endereço IP apresentado corresponde à configuração utilizada durante os testes e pode ser diferente em outras instalações.\hypertarget{md_README_autotoc_md9}{}\doxysubsection{\texorpdfstring{8. Execução}{8. Execução}}\label{md_README_autotoc_md9}
+Acessar a STM32\+MP1\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ssh\ root@192.168.42.2}
+
+\end{DoxyCode}
+
+
+Executar\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/root/sensor\_chama}
+
+\end{DoxyCode}
+
+
+O programa permanece em execução até ser interrompido com {\ttfamily Ctrl+C}.\hypertarget{md_README_autotoc_md10}{}\doxysubsection{\texorpdfstring{9. Implementação}{9. Implementação}}\label{md_README_autotoc_md10}
+A aplicação utiliza a interface GPIO Character Device v2 do kernel Linux.
+
+A comunicação com o GPIO é realizada através de chamadas {\ttfamily ioctl()}, utilizando a interface disponibilizada em {\ttfamily linux/gpio.\+h}.
+
+Essa abordagem permite a leitura do sensor sem depender diretamente da biblioteca libgpiod.\hypertarget{md_README_autotoc_md11}{}\doxysubsection{\texorpdfstring{10. Documentação Doxygen}{10. Documentação Doxygen}}\label{md_README_autotoc_md11}
+A classe {\ttfamily \doxylink{classSensorChama}{Sensor\+Chama}} possui documentação de seus atributos, métodos e valores de retorno.
+
+Para gerar a documentação\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen\ Doxyfile}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md12}{}\doxysubsection{\texorpdfstring{11. Testes realizados}{11. Testes realizados}}\label{md_README_autotoc_md12}
+O programa foi compilado cruzadamente no Ubuntu e executado na STM32\+MP1 com Linux embarcado.
+
+Os testes confirmaram\+:
+
+
+\begin{DoxyItemize}
+\item Comunicação funcional com o GPIO PE1.
+\item Detecção da presença de chama.
+\item Identificação da ausência de chama.
+\item Monitoramento contínuo.
+\item Exibição de mensagens quando o estado é alterado.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md13}{}\doxysubsection{\texorpdfstring{12. Limitações}{12. Limitações}}\label{md_README_autotoc_md13}
+O sensor fornece apenas uma saída digital, não permitindo obter diretamente valores contínuos de intensidade luminosa.
+
+A detecção depende da sensibilidade do módulo e das condições do ambiente.
+
+O projeto possui finalidade acadêmica e não substitui sistemas certificados de detecção e prevenção de incêndios. 

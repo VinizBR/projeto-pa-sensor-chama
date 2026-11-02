@@ -6,10 +6,13 @@ digraph "SensorChama"
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   Node1 [id="Node000001",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">SensorChama</TD></TR>
 <HR/>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">-</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string caminhoLeitura<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">-</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">int fdLinha<BR ALIGN="LEFT"/></TD></TR>
 <HR/>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">SensorChama(const<BR ALIGN="LEFT"/> std::string &amp;caminho<BR ALIGN="LEFT"/>=&quot;/sys/bus/iio/devices<BR ALIGN="LEFT"/>/iio:device1/in_voltage2_raw&quot;)<BR ALIGN="LEFT"/></TD></TR>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool lerValorBruto<BR ALIGN="LEFT"/>(int &amp;valor) const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">SensorChama()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">~SensorChama()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool lerNivel(int &amp;nivel)<BR ALIGN="LEFT"/> const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">SensorChama(const<BR ALIGN="LEFT"/> SensorChama &amp;)=delete<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">SensorChama &amp; operator<BR ALIGN="LEFT"/>=(const SensorChama &amp;)<BR ALIGN="LEFT"/>=delete<BR ALIGN="LEFT"/></TD></TR>
 </TABLE>>
-,height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Le o valor bruto de uma entrada do subsistema IIO do Linux."];
+,height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Interface C++ para um sensor de chama digital."];
 }

@@ -1,42 +1,77 @@
-
-#ifndef SENSOR_CHAMA_H
-#define SENSOR_CHAMA_H
-
-#include <string>
+#ifndef SENSORCHAMA_H
+#define SENSORCHAMA_H
 
 /**
  * @file SensorChama.h
- * @brief Declaracao da classe de leitura do sensor de chama.
+ * @brief Declaracao da classe responsavel pela leitura
+ * digital de um sensor de chama.
  */
 
 /**
  * @class SensorChama
- * @brief Le o valor bruto de uma entrada do subsistema IIO do Linux.
+ * @brief Interface C++ para um sensor de chama digital.
  *
- * O valor lido e uma amostra bruta do ADC.
- * A interpretacao como deteccao de chama exige validacao
- * do canal utilizado e do comportamento do sensor.
+ * @details
+ * A classe realiza a comunicacao com o GPIO PE1 da
+ * STM32MP1 atraves da interface GPIO do kernel Linux.
+ *
+ * O sensor apresenta nivel logico baixo (0) quando
+ * detecta uma chama e nivel alto (1) quando nao detecta.
  */
 class SensorChama {
+
 private:
-    std::string caminhoLeitura;
+
+    /**
+     * @brief Descritor da linha GPIO solicitada ao kernel.
+     */
+    int fdLinha;
 
 public:
-    /**
-     * @brief Constroi o leitor do sensor.
-     * @param caminho Caminho do arquivo IIO que sera lido.
-     */
-    explicit SensorChama(
-        const std::string& caminho =
-        "/sys/bus/iio/devices/iio:device1/in_voltage2_raw"
-    );
 
     /**
-     * @brief Le o valor bruto disponibilizado pelo Linux.
-     * @param valor Variavel que recebera o valor lido.
-     * @return true se a leitura funcionar; false em caso de erro.
+     * @brief Construtor da classe SensorChama.
+     *
+     * Abre o controlador GPIOE e configura a linha PE1
+     * como entrada digital.
+     *
+     * @throws std::runtime_error Caso nao seja possivel
+     * abrir ou configurar o GPIO.
      */
-    bool lerValorBruto(int& valor) const;
+    SensorChama();
+
+    /**
+     * @brief Destrutor da classe.
+     *
+     * Libera o descritor da linha GPIO.
+     */
+    ~SensorChama();
+
+    /**
+     * @brief Realiza a leitura do nivel logico do sensor.
+     *
+     * @param[out] nivel Variavel que recebe o valor
+     * digital lido (0 ou 1).
+     *
+     * @return true Caso a leitura seja realizada
+     * com sucesso.
+     *
+     * @return false Caso ocorra um erro na leitura.
+     */
+    bool lerNivel(int& nivel) const;
+
+    /**
+     * @brief Impede a copia do objeto.
+     *
+     * Evita que dois objetos tentem gerenciar
+     * o mesmo descritor GPIO.
+     */
+    SensorChama(const SensorChama&) = delete;
+
+    /**
+     * @brief Impede a atribuicao por copia.
+     */
+    SensorChama& operator=(const SensorChama&) = delete;
 };
 
 #endif

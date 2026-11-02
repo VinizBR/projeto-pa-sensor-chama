@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['programação_20aplicada_0',['Projeto de Programação Aplicada',['../md_README.html',1,'']]],
-  ['projeto_20de_20programação_20aplicada_1',['Projeto de Programação Aplicada',['../md_README.html',1,'']]]
+  ['6_20compilação_20cruzada_0',['6. Compilação cruzada',['../md_README.html#autotoc_md7',1,'']]]
 ];

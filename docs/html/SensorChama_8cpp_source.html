@@ -91,38 +91,77 @@ $(function(){initNavTree('SensorChama_8cpp_source.html','',''); });
   <div class="headertitle"><div class="title">SensorChama.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="SensorChama_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="SensorChama_8h.html">SensorChama.h</a>&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span></div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classSensorChama.html#a948d0ebb1a9b88b28e1ae53626656c7c">    9</a></span><a class="code hl_function" href="classSensorChama.html#a948d0ebb1a9b88b28e1ae53626656c7c">SensorChama::SensorChama</a>(<span class="keyword">const</span> std::string&amp; caminho)</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    : <a class="code hl_variable" href="classSensorChama.html#a070fe2b7946d7ab60354bbfc8870a522">caminhoLeitura</a>(caminho) {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
-</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classSensorChama.html#af664bbc5c3c311e0b5bb78325a40ddf9">   18</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorChama.html#af664bbc5c3c311e0b5bb78325a40ddf9">SensorChama::lerValorBruto</a>(<span class="keywordtype">int</span>&amp; valor)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::ifstream arquivo(<a class="code hl_variable" href="classSensorChama.html#a070fe2b7946d7ab60354bbfc8870a522">caminhoLeitura</a>);</div>
+<a href="SensorChama_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="SensorChama_8h.html">SensorChama.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;linux/gpio.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;sys/ioctl.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">   11</a></span><a class="code hl_function" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama::SensorChama</a>() : <a class="code hl_variable" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a>(-1) {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">int</span> fdChip = open(<span class="stringliteral">&quot;/dev/gpiochip4&quot;</span>, O_RDONLY);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">if</span> (fdChip &lt; 0) {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Erro ao abrir GPIOE&quot;</span>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    gpio_v2_line_request requisicao{};</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">if</span> (!arquivo.is_open()) {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    requisicao.offsets[0] = 1;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    requisicao.num_lines = 1;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    requisicao.config.flags = GPIO_V2_LINE_FLAG_INPUT;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> leitura;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">if</span> (!(arquivo &gt;&gt; leitura)) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::strncpy(</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        requisicao.consumer,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="stringliteral">&quot;sensor_chama&quot;</span>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">sizeof</span>(requisicao.consumer) - 1</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    );</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    valor = leitura;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span> (ioctl(fdChip, GPIO_V2_GET_LINE_IOCTL, &amp;requisicao) &lt; 0) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        close(fdChip);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Erro ao configurar PE1&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_variable" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a> = requisicao.fd;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    close(fdChip);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
 </div>
-<div class="ttc" id="aSensorChama_8h_html"><div class="ttname"><a href="SensorChama_8h.html">SensorChama.h</a></div><div class="ttdoc">Declaracao da classe de leitura do sensor de chama.</div></div>
-<div class="ttc" id="aclassSensorChama_html_a070fe2b7946d7ab60354bbfc8870a522"><div class="ttname"><a href="classSensorChama.html#a070fe2b7946d7ab60354bbfc8870a522">SensorChama::caminhoLeitura</a></div><div class="ttdeci">std::string caminhoLeitura</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8h_source.html#l00022">SensorChama.h:22</a></div></div>
-<div class="ttc" id="aclassSensorChama_html_a948d0ebb1a9b88b28e1ae53626656c7c"><div class="ttname"><a href="classSensorChama.html#a948d0ebb1a9b88b28e1ae53626656c7c">SensorChama::SensorChama</a></div><div class="ttdeci">SensorChama(const std::string &amp;caminho=&quot;/sys/bus/iio/devices/iio:device1/in_voltage2_raw&quot;)</div><div class="ttdoc">Constroi o leitor do sensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00009">SensorChama.cpp:9</a></div></div>
-<div class="ttc" id="aclassSensorChama_html_af664bbc5c3c311e0b5bb78325a40ddf9"><div class="ttname"><a href="classSensorChama.html#af664bbc5c3c311e0b5bb78325a40ddf9">SensorChama::lerValorBruto</a></div><div class="ttdeci">bool lerValorBruto(int &amp;valor) const</div><div class="ttdoc">Le o valor bruto disponibilizado pelo Linux.</div><div class="ttdef"><b>Definition</b> <a href="#l00018">SensorChama.cpp:18</a></div></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classSensorChama.html#acad74133e2eea7ec44c97e34b77b525a">   41</a></span><a class="code hl_function" href="classSensorChama.html#acad74133e2eea7ec44c97e34b77b525a">SensorChama::~SensorChama</a>() {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a> &gt;= 0) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        close(<a class="code hl_variable" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a>);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classSensorChama.html#a295a5ced1386153c81b1890060fbfd77">   47</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorChama.html#a295a5ced1386153c81b1890060fbfd77">SensorChama::lerNivel</a>(<span class="keywordtype">int</span>&amp; nivel)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    gpio_v2_line_values valores{};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    valores.mask = 1;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">if</span> (ioctl(<a class="code hl_variable" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a>, GPIO_V2_LINE_GET_VALUES_IOCTL, &amp;valores) &lt; 0) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    nivel = (valores.bits &amp; 1) ? 1 : 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+</div>
+<div class="ttc" id="aSensorChama_8h_html"><div class="ttname"><a href="SensorChama_8h.html">SensorChama.h</a></div><div class="ttdoc">Declaracao da classe responsavel pela leitura digital de um sensor de chama.</div></div>
+<div class="ttc" id="aclassSensorChama_html_a295a5ced1386153c81b1890060fbfd77"><div class="ttname"><a href="classSensorChama.html#a295a5ced1386153c81b1890060fbfd77">SensorChama::lerNivel</a></div><div class="ttdeci">bool lerNivel(int &amp;nivel) const</div><div class="ttdoc">Realiza a leitura do nivel logico do sensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00047">SensorChama.cpp:47</a></div></div>
+<div class="ttc" id="aclassSensorChama_html_a4ca0ed036e3c922d0ccfad21d00ab9bd"><div class="ttname"><a href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">SensorChama::fdLinha</a></div><div class="ttdeci">int fdLinha</div><div class="ttdoc">Descritor da linha GPIO solicitada ao kernel.</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8h_source.html#l00028">SensorChama.h:28</a></div></div>
+<div class="ttc" id="aclassSensorChama_html_a7e703461be67e87dc3862aeda0525dea"><div class="ttname"><a href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama::SensorChama</a></div><div class="ttdeci">SensorChama()</div><div class="ttdoc">Construtor da classe SensorChama.</div><div class="ttdef"><b>Definition</b> <a href="#l00011">SensorChama.cpp:11</a></div></div>
+<div class="ttc" id="aclassSensorChama_html_acad74133e2eea7ec44c97e34b77b525a"><div class="ttname"><a href="classSensorChama.html#acad74133e2eea7ec44c97e34b77b525a">SensorChama::~SensorChama</a></div><div class="ttdeci">~SensorChama()</div><div class="ttdoc">Destrutor da classe.</div><div class="ttdef"><b>Definition</b> <a href="#l00041">SensorChama.cpp:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

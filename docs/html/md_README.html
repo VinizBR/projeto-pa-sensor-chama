@@ -93,25 +93,109 @@ $(function(){initNavTree('md_README.html','',''); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-Sensor de Chama STM32MP1</h1>
+Sistema de Detecção de Chama — STM32MP1</h1>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-Objetivo</h2>
-<p>Desenvolver uma classe C++ para leitura de um sensor de chama utilizando o ambiente Linux embarcado da placa STM32MP1 DK1.</p>
+1. Objetivo</h2>
+<p>Desenvolver uma aplicação em C++ para monitoramento de um sensor de chama utilizando Linux embarcado na placa STM32MP157C-DK2.</p>
+<p>O programa realiza a leitura digital do sensor através de um GPIO e identifica mudanças no estado de detecção de chama.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Arquivos</h2>
+2. Hardware utilizado</h2>
 <ul>
-<li><span class="tt"><a class="el" href="SensorChama_8h.html" title="Declaracao da classe de leitura do sensor de chama.">SensorChama.h</a></span>: declaração da classe e documentação Doxygen.</li>
-<li><span class="tt"><a class="el" href="SensorChama_8cpp.html">SensorChama.cpp</a></span>: implementação dos métodos de leitura.</li>
+<li>Placa STM32MP157C-DK2</li>
+<li>Sensor de chama com saída digital (DO)</li>
+<li>Cabos de conexão</li>
+<li>Computador com Ubuntu para compilação cruzada</li>
 </ul>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Documentação</h2>
-<p>Os comentários Doxygen descrevem a finalidade da classe, seus métodos, parâmetros e valores de retorno.</p>
+3. Conexões</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Sensor  </th><th class="markdownTableHeadNone">STM32MP1  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">VCC  </td><td class="markdownTableBodyNone">3,3 V  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">GND  </td><td class="markdownTableBodyNone">GND  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DO  </td><td class="markdownTableBodyNone">D2 (PE1)  </td></tr>
+</table>
+<p>O pino D2 corresponde ao GPIO PE1 da STM32MP1.</p>
+<p>Na configuração Linux utilizada:</p>
+<ul>
+<li>Controlador: <span class="tt">/dev/gpiochip4</span></li>
+<li>Linha GPIO: <span class="tt">1</span></li>
+<li>Direção: entrada digital</li>
+</ul>
+<p>A numeração dos dispositivos GPIO pode variar conforme a configuração do sistema operacional.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-Estado atual</h2>
-<p>A implementação inicial realiza a leitura de um valor bruto de um arquivo do subsistema IIO do Linux. A correspondência entre o canal utilizado e a saída do sensor ainda precisa ser validada experimentalmente.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-Compilação</h2>
-<p>A aplicação deverá ser compilada para a arquitetura ARM utilizando a toolchain fornecida para o projeto. </p>
+4. Funcionamento</h2>
+<p>O sensor apresenta uma saída digital com dois estados:</p>
+<ul>
+<li><span class="tt">0</span>: chama detectada</li>
+<li><span class="tt">1</span>: nenhuma chama detectada</li>
+</ul>
+<p>Esses estados foram confirmados experimentalmente.</p>
+<p>A aplicação monitora continuamente o sensor, realizando leituras a cada 200 milissegundos.</p>
+<p>As mensagens são exibidas somente quando ocorre uma mudança no estado de detecção.</p>
+<p>Exemplo de execução: </p><pre class="fragment">Monitoramento iniciado.
+[INFO] Nenhuma chama detectada.
+[ALERTA] CHAMA DETECTADA!
+[INFO] Nenhuma chama detectada.
+</pre><h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+5. Estrutura do projeto</h2>
+<ul>
+<li><span class="tt"><a class="el" href="SensorChama_8h.html" title="Declaracao da classe responsavel pela leitura digital de um sensor de chama.">SensorChama.h</a></span>: declaração e documentação da classe.</li>
+<li><span class="tt"><a class="el" href="SensorChama_8cpp.html">SensorChama.cpp</a></span>: implementação da leitura GPIO.</li>
+<li><span class="tt"><a class="el" href="main_8cpp.html">main.cpp</a></span>: aplicação de monitoramento contínuo.</li>
+<li><span class="tt">Doxyfile</span>: configuração da documentação Doxygen.</li>
+<li><span class="tt">docs/</span>: arquivos de documentação do projeto.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+6. Compilação cruzada</h2>
+<p>O programa é desenvolvido no Ubuntu e compilado para a arquitetura ARM Cortex-A7 da STM32MP1.</p>
+<p>É necessário possuir um SDK compatível com a placa.</p>
+<p>Ativar o SDK utilizado no desenvolvimento:</p>
+<div class="fragment"><div class="line">source ~/stm32mp1-sdk/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi</div>
+</div><!-- fragment --><p>Compilar:</p>
+<div class="fragment"><div class="line">$CXX -std=c++17 -O2 -Wall -Wextra -pthread main.cpp SensorChama.cpp -o sensor_chama</div>
+</div><!-- fragment --><p>O executável gerado é destinado à arquitetura ARM.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+7. Transferência para a STM32MP1</h2>
+<p>Com a placa conectada à rede e o SSH habilitado:</p>
+<div class="fragment"><div class="line">scp -O sensor_chama root@192.168.42.2:/root/</div>
+</div><!-- fragment --><p>O endereço IP apresentado corresponde à configuração utilizada durante os testes e pode ser diferente em outras instalações.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+8. Execução</h2>
+<p>Acessar a STM32MP1:</p>
+<div class="fragment"><div class="line">ssh root@192.168.42.2</div>
+</div><!-- fragment --><p>Executar:</p>
+<div class="fragment"><div class="line">/root/sensor_chama</div>
+</div><!-- fragment --><p>O programa permanece em execução até ser interrompido com <span class="tt">Ctrl+C</span>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+9. Implementação</h2>
+<p>A aplicação utiliza a interface GPIO Character Device v2 do kernel Linux.</p>
+<p>A comunicação com o GPIO é realizada através de chamadas <span class="tt">ioctl()</span>, utilizando a interface disponibilizada em <span class="tt">linux/gpio.h</span>.</p>
+<p>Essa abordagem permite a leitura do sensor sem depender diretamente da biblioteca libgpiod.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+10. Documentação Doxygen</h2>
+<p>A classe <span class="tt"><a class="el" href="classSensorChama.html" title="Interface C++ para um sensor de chama digital.">SensorChama</a></span> possui documentação de seus atributos, métodos e valores de retorno.</p>
+<p>Para gerar a documentação:</p>
+<div class="fragment"><div class="line">doxygen Doxyfile</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+11. Testes realizados</h2>
+<p>O programa foi compilado cruzadamente no Ubuntu e executado na STM32MP1 com Linux embarcado.</p>
+<p>Os testes confirmaram:</p>
+<ul>
+<li>Comunicação funcional com o GPIO PE1.</li>
+<li>Detecção da presença de chama.</li>
+<li>Identificação da ausência de chama.</li>
+<li>Monitoramento contínuo.</li>
+<li>Exibição de mensagens quando o estado é alterado.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+12. Limitações</h2>
+<p>O sensor fornece apenas uma saída digital, não permitindo obter diretamente valores contínuos de intensidade luminosa.</p>
+<p>A detecção depende da sensibilidade do módulo e das condições do ambiente.</p>
+<p>O projeto possui finalidade acadêmica e não substitui sistemas certificados de detecção e prevenção de incêndios. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

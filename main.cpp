@@ -1,31 +1,47 @@
-
 #include "SensorChama.h"
+
 #include <iostream>
 #include <chrono>
 #include <thread>
-
-/**
- * @file main.cpp
- * @brief Programa de teste da classe SensorChama.
- */
+#include <exception>
 
 int main() {
-    SensorChama sensor;
+    try {
+        SensorChama sensor;
 
-    for (int i = 0; i < 20; ++i) {
-        int valor = 0;
+        int estadoAnterior = -1;
 
-        if (sensor.lerValorBruto(valor)) {
-            std::cout << "Leitura bruta: "
-                      << valor << std::endl;
-        } else {
-            std::cerr << "Erro ao ler o canal IIO."
-                      << std::endl;
+        std::cout << "Monitoramento iniciado.\n";
+
+        while (true) {
+            int nivel;
+
+            if (!sensor.lerNivel(nivel)) {
+                std::cerr << "Erro ao ler o sensor.\n";
+                return 1;
+            }
+
+            if (nivel != estadoAnterior) {
+
+                if (nivel == 0) {
+                    std::cout << "[ALERTA] CHAMA DETECTADA!"
+                              << std::endl;
+                } else {
+                    std::cout << "[INFO] Nenhuma chama detectada."
+                              << std::endl;
+                }
+
+                estadoAnterior = nivel;
+            }
+
+            std::this_thread::sleep_for(
+                std::chrono::milliseconds(200)
+            );
         }
 
-        std::this_thread::sleep_for(
-            std::chrono::milliseconds(500)
-        );
+    } catch (const std::exception& erro) {
+        std::cerr << erro.what() << std::endl;
+        return 1;
     }
 
     return 0;

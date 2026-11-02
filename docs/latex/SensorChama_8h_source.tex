@@ -1,26 +1,29 @@
 \doxysection{Sensor\+Chama.\+h}
 \hypertarget{SensorChama_8h_source}{}\label{SensorChama_8h_source}\mbox{\hyperlink{SensorChama_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00001}00001\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00002}00002\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_CHAMA\_H}}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00003}00003\ \textcolor{preprocessor}{\#define\ SENSOR\_CHAMA\_H}}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00004}00004\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00006}00006\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00011}00011\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00020}\mbox{\hyperlink{classSensorChama}{00020}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}{SensorChama}}\ \{}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00021}00021\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00022}\mbox{\hyperlink{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}{00022}}\ \ \ \ \ std::string\ \mbox{\hyperlink{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}{caminhoLeitura}};}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00023}00023\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00024}00024\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}{SensorChama}}(}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ caminho\ =}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/sys/bus/iio/devices/iio:device1/in\_voltage2\_raw"{}}}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00032}00032\ \ \ \ \ );}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00033}00033\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}{lerValorBruto}}(\textcolor{keywordtype}{int}\&\ valor)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00040}00040\ \};}
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00042}00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ SENSORCHAMA\_H}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ SENSORCHAMA\_H}}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00021}\mbox{\hyperlink{classSensorChama}{00021}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSensorChama_a7e703461be67e87dc3862aeda0525dea}{SensorChama}}\ \{}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00023}00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00028}\mbox{\hyperlink{classSensorChama_a4ca0ed036e3c922d0ccfad21d00ab9bd}{00028}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSensorChama_a4ca0ed036e3c922d0ccfad21d00ab9bd}{fdLinha}};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00030}00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{classSensorChama_a7e703461be67e87dc3862aeda0525dea}{SensorChama}}();}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{classSensorChama_acad74133e2eea7ec44c97e34b77b525a}{\string~SensorChama}}();}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSensorChama_a295a5ced1386153c81b1890060fbfd77}{lerNivel}}(\textcolor{keywordtype}{int}\&\ nivel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00069}\mbox{\hyperlink{classSensorChama_abde6ca09e4ebc5269125bb4c1e387d7f}{00069}}\ \ \ \ \ \mbox{\hyperlink{classSensorChama_abde6ca09e4ebc5269125bb4c1e387d7f}{SensorChama}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSensorChama_a7e703461be67e87dc3862aeda0525dea}{SensorChama}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00074}\mbox{\hyperlink{classSensorChama_a813e97483f9826f6945a86ee39a31398}{00074}}\ \ \ \ \ \mbox{\hyperlink{classSensorChama_a7e703461be67e87dc3862aeda0525dea}{SensorChama}}\&\ \mbox{\hyperlink{classSensorChama_a813e97483f9826f6945a86ee39a31398}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSensorChama_a7e703461be67e87dc3862aeda0525dea}{SensorChama}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00075}00075\ \};}
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{SensorChama_8h_source_l00077}00077\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

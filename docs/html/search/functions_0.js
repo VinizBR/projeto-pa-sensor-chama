@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lervalorbruto_0',['lerValorBruto',['../classSensorChama.html#af664bbc5c3c311e0b5bb78325a40ddf9',1,'SensorChama']]]
+  ['lernivel_0',['lerNivel',['../classSensorChama.html#a295a5ced1386153c81b1890060fbfd77',1,'SensorChama']]]
 ];

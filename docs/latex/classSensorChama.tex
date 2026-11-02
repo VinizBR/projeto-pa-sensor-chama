@@ -2,7 +2,7 @@
 \hypertarget{classSensorChama}{}\label{classSensorChama}\index{SensorChama@{SensorChama}}
 
 
-Le o valor bruto de uma entrada do subsistema IIO do Linux.  
+Interface C++ para um sensor de chama digital.  
 
 
 
@@ -16,103 +16,139 @@ Collaboration diagram for Sensor\+Chama\+:
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}{Sensor\+Chama}} (const std\+::string \&caminho="{}/sys/bus/iio/devices/iio\+:device1/in\+\_\+voltage2\+\_\+raw"{})
-\begin{DoxyCompactList}\small\item\em Constroi o leitor do sensor. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}{ler\+Valor\+Bruto}} (int \&valor) const
-\begin{DoxyCompactList}\small\item\em Le o valor bruto disponibilizado pelo Linux. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{classSensorChama_a7e703461be67e87dc3862aeda0525dea}{Sensor\+Chama}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classSensorChama}{Sensor\+Chama}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSensorChama_acad74133e2eea7ec44c97e34b77b525a}{\texorpdfstring{$\sim$}{\string~}\+Sensor\+Chama}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSensorChama_a295a5ced1386153c81b1890060fbfd77}{ler\+Nivel}} (int \&nivel) const
+\begin{DoxyCompactList}\small\item\em Realiza a leitura do nivel logico do sensor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSensorChama_abde6ca09e4ebc5269125bb4c1e387d7f}{Sensor\+Chama}} (const \mbox{\hyperlink{classSensorChama}{Sensor\+Chama}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Impede a copia do objeto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSensorChama}{Sensor\+Chama}} \& \mbox{\hyperlink{classSensorChama_a813e97483f9826f6945a86ee39a31398}{operator=}} (const \mbox{\hyperlink{classSensorChama}{Sensor\+Chama}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Impede a atribuicao por copia. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::string \mbox{\hyperlink{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}{caminho\+Leitura}}
-\end{DoxyCompactItemize}
+int \mbox{\hyperlink{classSensorChama_a4ca0ed036e3c922d0ccfad21d00ab9bd}{fd\+Linha}}
+\begin{DoxyCompactList}\small\item\em Descritor da linha GPIO solicitada ao kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Le o valor bruto de uma entrada do subsistema IIO do Linux. 
+Interface C++ para um sensor de chama digital. 
 
-O valor lido e uma amostra bruta do ADC. A interpretacao como deteccao de chama exige validacao do canal utilizado e do comportamento do sensor. 
+A classe realiza a comunicacao com o GPIO PE1 da STM32\+MP1 atraves da interface GPIO do kernel Linux.
 
-Definition at line \mbox{\hyperlink{SensorChama_8h_source_l00020}{20}} of file \mbox{\hyperlink{SensorChama_8h_source}{Sensor\+Chama.\+h}}.
+O sensor apresenta nivel logico baixo (0) quando detecta uma chama e nivel alto (1) quando nao detecta. 
+
+Definition at line \mbox{\hyperlink{SensorChama_8h_source_l00021}{21}} of file \mbox{\hyperlink{SensorChama_8h_source}{Sensor\+Chama.\+h}}.
 
 
 
 \label{doc-constructors}
 \Hypertarget{classSensorChama_doc-constructors}
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c}\index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
+\Hypertarget{classSensorChama_a7e703461be67e87dc3862aeda0525dea}\index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
 \index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
-\doxysubsubsection{\texorpdfstring{SensorChama()}{SensorChama()}}
-{\footnotesize\ttfamily \label{classSensorChama_a948d0ebb1a9b88b28e1ae53626656c7c} 
-Sensor\+Chama\+::\+Sensor\+Chama (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{caminho}{ = {\ttfamily "{}/sys/bus/iio/devices/iio\+:device1/in\+\_\+voltage2\+\_\+raw"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+\doxysubsubsection{\texorpdfstring{SensorChama()}{SensorChama()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classSensorChama_a7e703461be67e87dc3862aeda0525dea} 
+Sensor\+Chama\+::\+Sensor\+Chama (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
-Constroi o leitor do sensor. 
+Construtor da classe \doxylink{classSensorChama}{Sensor\+Chama}. 
 
-Inicializa o caminho do arquivo de leitura.
+Abre o controlador GPIOE e configura a linha PE1 como entrada digital.
 
 
-\begin{DoxyParams}{Parameters}
-{\em caminho} & Caminho do arquivo IIO que sera lido.\\
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Caso nao seja possivel abrir ou configurar o GPIO. \\
 \hline
-{\em caminho} & Caminho do arquivo IIO. \\
-\hline
-\end{DoxyParams}
+\end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+
+\Hypertarget{classSensorChama_acad74133e2eea7ec44c97e34b77b525a}\index{SensorChama@{SensorChama}!````~SensorChama@{\texorpdfstring{$\sim$}{\string~}SensorChama}}
+\index{````~SensorChama@{\texorpdfstring{$\sim$}{\string~}SensorChama}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SensorChama()}{\string~SensorChama()}}
+{\footnotesize\ttfamily \label{classSensorChama_acad74133e2eea7ec44c97e34b77b525a} 
+Sensor\+Chama\+::\texorpdfstring{$\sim$}{\string~}\+Sensor\+Chama (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
+
+Destrutor da classe. 
+
+Libera o descritor da linha GPIO. 
+
+Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+
+\Hypertarget{classSensorChama_abde6ca09e4ebc5269125bb4c1e387d7f}\index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
+\index{SensorChama@{SensorChama}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{SensorChama()}{SensorChama()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classSensorChama_abde6ca09e4ebc5269125bb4c1e387d7f} 
+Sensor\+Chama\+::\+Sensor\+Chama (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSensorChama}{Sensor\+Chama}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Impede a copia do objeto. 
+
+Evita que dois objetos tentem gerenciar o mesmo descritor GPIO. 
 
 \label{doc-func-members}
 \Hypertarget{classSensorChama_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9}\index{SensorChama@{SensorChama}!lerValorBruto@{lerValorBruto}}
-\index{lerValorBruto@{lerValorBruto}!SensorChama@{SensorChama}}
-\doxysubsubsection{\texorpdfstring{lerValorBruto()}{lerValorBruto()}}
-{\footnotesize\ttfamily \label{classSensorChama_af664bbc5c3c311e0b5bb78325a40ddf9} 
-bool Sensor\+Chama\+::ler\+Valor\+Bruto (\begin{DoxyParamCaption}\item[{int \&}]{valor}{}\end{DoxyParamCaption}) const}
+\Hypertarget{classSensorChama_a295a5ced1386153c81b1890060fbfd77}\index{SensorChama@{SensorChama}!lerNivel@{lerNivel}}
+\index{lerNivel@{lerNivel}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{lerNivel()}{lerNivel()}}
+{\footnotesize\ttfamily \label{classSensorChama_a295a5ced1386153c81b1890060fbfd77} 
+bool Sensor\+Chama\+::ler\+Nivel (\begin{DoxyParamCaption}\item[{int \&}]{nivel}{}\end{DoxyParamCaption}) const}
 
 
 
-Le o valor bruto disponibilizado pelo Linux. 
-
-Le o valor bruto do canal configurado.
+Realiza a leitura do nivel logico do sensor. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em valor} & Variavel que recebera o valor lido. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em nivel} & Variavel que recebe o valor digital lido (0 ou 1).\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true se a leitura funcionar; false em caso de erro.
-\end{DoxyReturn}
+true Caso a leitura seja realizada com sucesso.
 
-\begin{DoxyParams}{Parameters}
-{\em valor} & Referencia onde o resultado sera armazenado. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-true se o arquivo puder ser lido corretamente. 
+false Caso ocorra um erro na leitura. 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+Definition at line \mbox{\hyperlink{SensorChama_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{SensorChama_8cpp_source}{Sensor\+Chama.\+cpp}}.
+
+\Hypertarget{classSensorChama_a813e97483f9826f6945a86ee39a31398}\index{SensorChama@{SensorChama}!operator=@{operator=}}
+\index{operator=@{operator=}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{classSensorChama_a813e97483f9826f6945a86ee39a31398} 
+\mbox{\hyperlink{classSensorChama}{Sensor\+Chama}} \& Sensor\+Chama\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSensorChama}{Sensor\+Chama}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Impede a atribuicao por copia. 
 
 
 
 \label{doc-variable-members}
 \Hypertarget{classSensorChama_doc-variable-members}
 \doxysubsection{Member Data Documentation}
-\Hypertarget{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522}\index{SensorChama@{SensorChama}!caminhoLeitura@{caminhoLeitura}}
-\index{caminhoLeitura@{caminhoLeitura}!SensorChama@{SensorChama}}
-\doxysubsubsection{\texorpdfstring{caminhoLeitura}{caminhoLeitura}}
-{\footnotesize\ttfamily \label{classSensorChama_a070fe2b7946d7ab60354bbfc8870a522} 
-std\+::string Sensor\+Chama\+::caminho\+Leitura\hspace{0.3cm}{\ttfamily [private]}}
+\Hypertarget{classSensorChama_a4ca0ed036e3c922d0ccfad21d00ab9bd}\index{SensorChama@{SensorChama}!fdLinha@{fdLinha}}
+\index{fdLinha@{fdLinha}!SensorChama@{SensorChama}}
+\doxysubsubsection{\texorpdfstring{fdLinha}{fdLinha}}
+{\footnotesize\ttfamily \label{classSensorChama_a4ca0ed036e3c922d0ccfad21d00ab9bd} 
+int Sensor\+Chama\+::fd\+Linha\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line \mbox{\hyperlink{SensorChama_8h_source_l00022}{22}} of file \mbox{\hyperlink{SensorChama_8h_source}{Sensor\+Chama.\+h}}.
+Descritor da linha GPIO solicitada ao kernel. 
+
+
+
+Definition at line \mbox{\hyperlink{SensorChama_8h_source_l00028}{28}} of file \mbox{\hyperlink{SensorChama_8h_source}{Sensor\+Chama.\+h}}.
 
 
 

@@ -91,32 +91,38 @@ $(function(){initNavTree('SensorChama_8h_source.html','',''); });
   <div class="headertitle"><div class="title">SensorChama.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="SensorChama_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef SENSOR_CHAMA_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define SENSOR_CHAMA_H</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classSensorChama.html">   20</a></span><span class="keyword">class </span><a class="code hl_function" href="classSensorChama.html#a948d0ebb1a9b88b28e1ae53626656c7c">SensorChama</a> {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classSensorChama.html#a070fe2b7946d7ab60354bbfc8870a522">   22</a></span>    std::string <a class="code hl_variable" href="classSensorChama.html#a070fe2b7946d7ab60354bbfc8870a522">caminhoLeitura</a>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classSensorChama.html#a948d0ebb1a9b88b28e1ae53626656c7c">SensorChama</a>(</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> std::string&amp; caminho =</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="stringliteral">&quot;/sys/bus/iio/devices/iio:device1/in_voltage2_raw&quot;</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    );</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorChama.html#af664bbc5c3c311e0b5bb78325a40ddf9">lerValorBruto</a>(<span class="keywordtype">int</span>&amp; valor) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+<a href="SensorChama_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SENSORCHAMA_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SENSORCHAMA_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classSensorChama.html">   21</a></span><span class="keyword">class </span><a class="code hl_function" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">   28</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_function" href="classSensorChama.html#acad74133e2eea7ec44c97e34b77b525a">~SensorChama</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorChama.html#a295a5ced1386153c81b1890060fbfd77">lerNivel</a>(<span class="keywordtype">int</span>&amp; nivel) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classSensorChama.html#abde6ca09e4ebc5269125bb4c1e387d7f">   69</a></span>    <a class="code hl_function" href="classSensorChama.html#abde6ca09e4ebc5269125bb4c1e387d7f">SensorChama</a>(<span class="keyword">const</span> <a class="code hl_function" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classSensorChama.html#a813e97483f9826f6945a86ee39a31398">   74</a></span>    <a class="code hl_function" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama</a>&amp; <a class="code hl_function" href="classSensorChama.html#a813e97483f9826f6945a86ee39a31398">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassSensorChama_html_a070fe2b7946d7ab60354bbfc8870a522"><div class="ttname"><a href="classSensorChama.html#a070fe2b7946d7ab60354bbfc8870a522">SensorChama::caminhoLeitura</a></div><div class="ttdeci">std::string caminhoLeitura</div><div class="ttdef"><b>Definition</b> <a href="#l00022">SensorChama.h:22</a></div></div>
-<div class="ttc" id="aclassSensorChama_html_a948d0ebb1a9b88b28e1ae53626656c7c"><div class="ttname"><a href="classSensorChama.html#a948d0ebb1a9b88b28e1ae53626656c7c">SensorChama::SensorChama</a></div><div class="ttdeci">SensorChama(const std::string &amp;caminho=&quot;/sys/bus/iio/devices/iio:device1/in_voltage2_raw&quot;)</div><div class="ttdoc">Constroi o leitor do sensor.</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8cpp_source.html#l00009">SensorChama.cpp:9</a></div></div>
-<div class="ttc" id="aclassSensorChama_html_af664bbc5c3c311e0b5bb78325a40ddf9"><div class="ttname"><a href="classSensorChama.html#af664bbc5c3c311e0b5bb78325a40ddf9">SensorChama::lerValorBruto</a></div><div class="ttdeci">bool lerValorBruto(int &amp;valor) const</div><div class="ttdoc">Le o valor bruto disponibilizado pelo Linux.</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8cpp_source.html#l00018">SensorChama.cpp:18</a></div></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassSensorChama_html_a295a5ced1386153c81b1890060fbfd77"><div class="ttname"><a href="classSensorChama.html#a295a5ced1386153c81b1890060fbfd77">SensorChama::lerNivel</a></div><div class="ttdeci">bool lerNivel(int &amp;nivel) const</div><div class="ttdoc">Realiza a leitura do nivel logico do sensor.</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8cpp_source.html#l00047">SensorChama.cpp:47</a></div></div>
+<div class="ttc" id="aclassSensorChama_html_a4ca0ed036e3c922d0ccfad21d00ab9bd"><div class="ttname"><a href="classSensorChama.html#a4ca0ed036e3c922d0ccfad21d00ab9bd">SensorChama::fdLinha</a></div><div class="ttdeci">int fdLinha</div><div class="ttdoc">Descritor da linha GPIO solicitada ao kernel.</div><div class="ttdef"><b>Definition</b> <a href="#l00028">SensorChama.h:28</a></div></div>
+<div class="ttc" id="aclassSensorChama_html_a7e703461be67e87dc3862aeda0525dea"><div class="ttname"><a href="classSensorChama.html#a7e703461be67e87dc3862aeda0525dea">SensorChama::SensorChama</a></div><div class="ttdeci">SensorChama()</div><div class="ttdoc">Construtor da classe SensorChama.</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8cpp_source.html#l00011">SensorChama.cpp:11</a></div></div>
+<div class="ttc" id="aclassSensorChama_html_a813e97483f9826f6945a86ee39a31398"><div class="ttname"><a href="classSensorChama.html#a813e97483f9826f6945a86ee39a31398">SensorChama::operator=</a></div><div class="ttdeci">SensorChama &amp; operator=(const SensorChama &amp;)=delete</div><div class="ttdoc">Impede a atribuicao por copia.</div></div>
+<div class="ttc" id="aclassSensorChama_html_abde6ca09e4ebc5269125bb4c1e387d7f"><div class="ttname"><a href="classSensorChama.html#abde6ca09e4ebc5269125bb4c1e387d7f">SensorChama::SensorChama</a></div><div class="ttdeci">SensorChama(const SensorChama &amp;)=delete</div><div class="ttdoc">Impede a copia do objeto.</div></div>
+<div class="ttc" id="aclassSensorChama_html_acad74133e2eea7ec44c97e34b77b525a"><div class="ttname"><a href="classSensorChama.html#acad74133e2eea7ec44c97e34b77b525a">SensorChama::~SensorChama</a></div><div class="ttdeci">~SensorChama()</div><div class="ttdoc">Destrutor da classe.</div><div class="ttdef"><b>Definition</b> <a href="SensorChama_8cpp_source.html#l00041">SensorChama.cpp:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

@@ -1,33 +1,60 @@
-
 #include "SensorChama.h"
-#include <fstream>
 
-/**
- * @brief Inicializa o caminho do arquivo de leitura.
- * @param caminho Caminho do arquivo IIO.
- */
-SensorChama::SensorChama(const std::string& caminho)
-    : caminhoLeitura(caminho) {
+#include <linux/gpio.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+
+#include <cstring>
+#include <stdexcept>
+
+SensorChama::SensorChama() : fdLinha(-1) {
+
+    int fdChip = open("/dev/gpiochip4", O_RDONLY);
+
+    if (fdChip < 0) {
+        throw std::runtime_error("Erro ao abrir GPIOE");
+    }
+
+    gpio_v2_line_request requisicao{};
+
+    requisicao.offsets[0] = 1;
+    requisicao.num_lines = 1;
+    requisicao.config.flags = GPIO_V2_LINE_FLAG_INPUT;
+
+    std::strncpy(
+        requisicao.consumer,
+        "sensor_chama",
+        sizeof(requisicao.consumer) - 1
+    );
+
+    if (ioctl(fdChip, GPIO_V2_GET_LINE_IOCTL, &requisicao) < 0) {
+        close(fdChip);
+        throw std::runtime_error("Erro ao configurar PE1");
+    }
+
+    fdLinha = requisicao.fd;
+
+    close(fdChip);
 }
 
-/**
- * @brief Le o valor bruto do canal configurado.
- * @param valor Referencia onde o resultado sera armazenado.
- * @return true se o arquivo puder ser lido corretamente.
- */
-bool SensorChama::lerValorBruto(int& valor) const {
-    std::ifstream arquivo(caminhoLeitura);
+SensorChama::~SensorChama() {
+    if (fdLinha >= 0) {
+        close(fdLinha);
+    }
+}
 
-    if (!arquivo.is_open()) {
+bool SensorChama::lerNivel(int& nivel) const {
+
+    gpio_v2_line_values valores{};
+
+    valores.mask = 1;
+
+    if (ioctl(fdLinha, GPIO_V2_LINE_GET_VALUES_IOCTL, &valores) < 0) {
         return false;
     }
 
-    int leitura;
+    nivel = (valores.bits & 1) ? 1 : 0;
 
-    if (!(arquivo >> leitura)) {
-        return false;
-    }
-
-    valor = leitura;
     return true;
 }

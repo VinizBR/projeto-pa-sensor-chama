@@ -92,7 +92,7 @@ $(function(){initNavTree('classSensorChama.html','','classSensorChama-members');
 </div><!--header-->
 <div class="contents">
 
-<p>Le o valor bruto de uma entrada do subsistema IIO do Linux.  
+<p>Interface C++ para um sensor de chama digital.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SensorChama_8h_source.html">SensorChama.h</a>&gt;</code></p>
@@ -104,23 +104,81 @@ Collaboration diagram for SensorChama:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a948d0ebb1a9b88b28e1ae53626656c7c" id="r_a948d0ebb1a9b88b28e1ae53626656c7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a948d0ebb1a9b88b28e1ae53626656c7c">SensorChama</a> (const std::string &amp;caminho=&quot;/sys/bus/iio/devices/iio:device1/in_voltage2_raw&quot;)</td></tr>
-<tr class="memdesc:a948d0ebb1a9b88b28e1ae53626656c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constroi o leitor do sensor.  <br /></td></tr>
-<tr class="memitem:af664bbc5c3c311e0b5bb78325a40ddf9" id="r_af664bbc5c3c311e0b5bb78325a40ddf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af664bbc5c3c311e0b5bb78325a40ddf9">lerValorBruto</a> (int &amp;valor) const</td></tr>
-<tr class="memdesc:af664bbc5c3c311e0b5bb78325a40ddf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le o valor bruto disponibilizado pelo Linux.  <br /></td></tr>
+<tr class="memitem:a7e703461be67e87dc3862aeda0525dea" id="r_a7e703461be67e87dc3862aeda0525dea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e703461be67e87dc3862aeda0525dea">SensorChama</a> ()</td></tr>
+<tr class="memdesc:a7e703461be67e87dc3862aeda0525dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construtor da classe <a class="el" href="classSensorChama.html" title="Interface C++ para um sensor de chama digital.">SensorChama</a>.  <br /></td></tr>
+<tr class="memitem:acad74133e2eea7ec44c97e34b77b525a" id="r_acad74133e2eea7ec44c97e34b77b525a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acad74133e2eea7ec44c97e34b77b525a">~SensorChama</a> ()</td></tr>
+<tr class="memdesc:acad74133e2eea7ec44c97e34b77b525a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destrutor da classe.  <br /></td></tr>
+<tr class="memitem:a295a5ced1386153c81b1890060fbfd77" id="r_a295a5ced1386153c81b1890060fbfd77"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a295a5ced1386153c81b1890060fbfd77">lerNivel</a> (int &amp;nivel) const</td></tr>
+<tr class="memdesc:a295a5ced1386153c81b1890060fbfd77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a leitura do nivel logico do sensor.  <br /></td></tr>
+<tr class="memitem:abde6ca09e4ebc5269125bb4c1e387d7f" id="r_abde6ca09e4ebc5269125bb4c1e387d7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abde6ca09e4ebc5269125bb4c1e387d7f">SensorChama</a> (const <a class="el" href="classSensorChama.html">SensorChama</a> &amp;)=delete</td></tr>
+<tr class="memdesc:abde6ca09e4ebc5269125bb4c1e387d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Impede a copia do objeto.  <br /></td></tr>
+<tr class="memitem:a813e97483f9826f6945a86ee39a31398" id="r_a813e97483f9826f6945a86ee39a31398"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorChama.html">SensorChama</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a813e97483f9826f6945a86ee39a31398">operator=</a> (const <a class="el" href="classSensorChama.html">SensorChama</a> &amp;)=delete</td></tr>
+<tr class="memdesc:a813e97483f9826f6945a86ee39a31398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Impede a atribuicao por copia.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a070fe2b7946d7ab60354bbfc8870a522" id="r_a070fe2b7946d7ab60354bbfc8870a522"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a070fe2b7946d7ab60354bbfc8870a522">caminhoLeitura</a></td></tr>
+<tr class="memitem:a4ca0ed036e3c922d0ccfad21d00ab9bd" id="r_a4ca0ed036e3c922d0ccfad21d00ab9bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ca0ed036e3c922d0ccfad21d00ab9bd">fdLinha</a></td></tr>
+<tr class="memdesc:a4ca0ed036e3c922d0ccfad21d00ab9bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descritor da linha GPIO solicitada ao kernel.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Le o valor bruto de uma entrada do subsistema IIO do Linux. </p>
-<p>O valor lido e uma amostra bruta do ADC. A interpretacao como deteccao de chama exige validacao do canal utilizado e do comportamento do sensor. </p>
+<div class="textblock"><p>Interface C++ para um sensor de chama digital. </p>
+<p>A classe realiza a comunicacao com o GPIO PE1 da STM32MP1 atraves da interface GPIO do kernel Linux.</p>
+<p>O sensor apresenta nivel logico baixo (0) quando detecta uma chama e nivel alto (1) quando nao detecta. </p>
 
-<p class="definition">Definition at line <a class="el" href="SensorChama_8h_source.html#l00020">20</a> of file <a class="el" href="SensorChama_8h_source.html">SensorChama.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SensorChama_8h_source.html#l00021">21</a> of file <a class="el" href="SensorChama_8h_source.html">SensorChama.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a948d0ebb1a9b88b28e1ae53626656c7c" name="a948d0ebb1a9b88b28e1ae53626656c7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a948d0ebb1a9b88b28e1ae53626656c7c">&#9670;&#160;</a></span>SensorChama()</h2>
+<a id="a7e703461be67e87dc3862aeda0525dea" name="a7e703461be67e87dc3862aeda0525dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e703461be67e87dc3862aeda0525dea">&#9670;&#160;</a></span>SensorChama() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SensorChama::SensorChama </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construtor da classe <a class="el" href="classSensorChama.html" title="Interface C++ para um sensor de chama digital.">SensorChama</a>. </p>
+<p>Abre o controlador GPIOE e configura a linha PE1 como entrada digital.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>Caso nao seja possivel abrir ou configurar o GPIO. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SensorChama_8cpp_source.html#l00011">11</a> of file <a class="el" href="SensorChama_8cpp_source.html">SensorChama.cpp</a>.</p>
+
+</div>
+</div>
+<a id="acad74133e2eea7ec44c97e34b77b525a" name="acad74133e2eea7ec44c97e34b77b525a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad74133e2eea7ec44c97e34b77b525a">&#9670;&#160;</a></span>~SensorChama()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SensorChama::~SensorChama </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destrutor da classe. </p>
+<p>Libera o descritor da linha GPIO. </p>
+
+<p class="definition">Definition at line <a class="el" href="SensorChama_8cpp_source.html#l00041">41</a> of file <a class="el" href="SensorChama_8cpp_source.html">SensorChama.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abde6ca09e4ebc5269125bb4c1e387d7f" name="abde6ca09e4ebc5269125bb4c1e387d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abde6ca09e4ebc5269125bb4c1e387d7f">&#9670;&#160;</a></span>SensorChama() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,71 +189,55 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">SensorChama::SensorChama </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>caminho</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;/sys/bus/iio/devices/iio:device1/in_voltage2_raw&quot;</span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classSensorChama.html">SensorChama</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constroi o leitor do sensor. </p>
-<p>Inicializa o caminho do arquivo de leitura.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">caminho</td><td>Caminho do arquivo IIO que sera lido.</td></tr>
-    <tr><td class="paramname">caminho</td><td>Caminho do arquivo IIO. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="SensorChama_8cpp_source.html#l00009">9</a> of file <a class="el" href="SensorChama_8cpp_source.html">SensorChama.cpp</a>.</p>
+<p>Impede a copia do objeto. </p>
+<p>Evita que dois objetos tentem gerenciar o mesmo descritor GPIO. </p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="af664bbc5c3c311e0b5bb78325a40ddf9" name="af664bbc5c3c311e0b5bb78325a40ddf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af664bbc5c3c311e0b5bb78325a40ddf9">&#9670;&#160;</a></span>lerValorBruto()</h2>
+<a id="a295a5ced1386153c81b1890060fbfd77" name="a295a5ced1386153c81b1890060fbfd77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295a5ced1386153c81b1890060fbfd77">&#9670;&#160;</a></span>lerNivel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool SensorChama::lerValorBruto </td>
+          <td class="memname">bool SensorChama::lerNivel </td>
           <td>(</td>
-          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>valor</em></span></td><td>)</td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>nivel</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Le o valor bruto disponibilizado pelo Linux. </p>
-<p>Le o valor bruto do canal configurado.</p>
+<p>Realiza a leitura do nivel logico do sensor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">valor</td><td>Variavel que recebera o valor lido. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">nivel</td><td>Variavel que recebe o valor digital lido (0 ou 1).</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true se a leitura funcionar; false em caso de erro.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">valor</td><td>Referencia onde o resultado sera armazenado. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true se o arquivo puder ser lido corretamente. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true Caso a leitura seja realizada com sucesso.</dd>
+<dd>
+false Caso ocorra um erro na leitura. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SensorChama_8cpp_source.html#l00018">18</a> of file <a class="el" href="SensorChama_8cpp_source.html">SensorChama.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SensorChama_8cpp_source.html#l00047">47</a> of file <a class="el" href="SensorChama_8cpp_source.html">SensorChama.cpp</a>.</p>
 
 </div>
 </div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a070fe2b7946d7ab60354bbfc8870a522" name="a070fe2b7946d7ab60354bbfc8870a522"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a070fe2b7946d7ab60354bbfc8870a522">&#9670;&#160;</a></span>caminhoLeitura</h2>
+<a id="a813e97483f9826f6945a86ee39a31398" name="a813e97483f9826f6945a86ee39a31398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813e97483f9826f6945a86ee39a31398">&#9670;&#160;</a></span>operator=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,7 +246,35 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string SensorChama::caminhoLeitura</td>
+          <td class="memname"><a class="el" href="classSensorChama.html">SensorChama</a> &amp; SensorChama::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSensorChama.html">SensorChama</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Impede a atribuicao por copia. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a4ca0ed036e3c922d0ccfad21d00ab9bd" name="a4ca0ed036e3c922d0ccfad21d00ab9bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ca0ed036e3c922d0ccfad21d00ab9bd">&#9670;&#160;</a></span>fdLinha</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorChama::fdLinha</td>
         </tr>
       </table>
   </td>
@@ -214,7 +284,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SensorChama_8h_source.html#l00022">22</a> of file <a class="el" href="SensorChama_8h_source.html">SensorChama.h</a>.</p>
+<p>Descritor da linha GPIO solicitada ao kernel. </p>
+
+<p class="definition">Definition at line <a class="el" href="SensorChama_8h_source.html#l00028">28</a> of file <a class="el" href="SensorChama_8h_source.html">SensorChama.h</a>.</p>
 
 </div>
 </div>

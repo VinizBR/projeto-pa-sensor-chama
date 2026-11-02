@@ -1,0 +1,8 @@
+
+# Executavel compilado
+sensor_chama
+
+# Arquivos temporarios
+*.o
+*.swp
+*~
