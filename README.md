@@ -161,3 +161,29 @@ condições do ambiente.
 
 O projeto possui finalidade acadêmica e não substitui
 sistemas certificados de detecção e prevenção de incêndios.
+
+## Entrega 3 — Comunicação UDP
+
+O projeto permite transmitir as leituras do sensor de chama
+da STM32MP1 para um servidor UDP executado no Ubuntu.
+
+### Arquivos
+
+- `SensorChama.h`: interface da classe do sensor.
+- `SensorChama.cpp`: implementação da leitura GPIO.
+- `main.cpp`: monitoramento e transmissão UDP.
+- `servidor_udp.cpp`: servidor receptor UDP.
+- `PROTOCOLO_UDP.md`: especificação do protocolo.
+
+### Topologia utilizada nos testes
+
+- STM32MP1: 192.168.42.2
+- Servidor Ubuntu: 192.168.42.10
+- Porta UDP: 5000
+
+Os endereços são exemplos da rede utilizada nos testes.
+
+### Compilação do servidor no Ubuntu
+
+```bash
+g++ -std=c++17 -O2 -Wall -Wextra servidor_udp.cpp -o servidor_udp
