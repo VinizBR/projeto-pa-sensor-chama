@@ -187,3 +187,32 @@ Os endereços são exemplos da rede utilizada nos testes.
 
 ```bash
 g++ -std=c++17 -O2 -Wall -Wextra servidor_udp.cpp -o servidor_udp
+
+```
+
+### Execução do servidor UDP
+
+No Ubuntu:
+
+```bash
+./servidor_udp
+```
+
+### Execução do cliente UDP
+
+Na STM32MP1:
+
+```bash
+/root/sensor_chama 192.168.42.10
+```
+
+O argumento indica o endereço IPv4 do servidor UDP.
+
+### Protocolo de comunicação
+
+As mensagens seguem o formato:
+
+`CHAMA;1;SEQUENCIA;NIVEL`
+
+A especificação completa está disponível em
+[PROTOCOLO_UDP.md](PROTOCOLO_UDP.md).
